@@ -11,6 +11,7 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var objects = NSMutableArray()
+    var offset = 0;
 
 
     override func awakeFromNib() {
@@ -22,8 +23,13 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
 //        self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "loadStories")
-        self.navigationItem.rightBarButtonItem = addButton
+//        let addButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "loadStories")
+//        self.navigationItem.rightBarButtonItem = addButton
+
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.backgroundColor = UIColor.blackColor()
+        self.refreshControl?.tintColor = UIColor.whiteColor()
+        self.refreshControl?.addTarget(self, action: "loadStories", forControlEvents: UIControlEvents.ValueChanged)
 
         self.loadStories()
     }
@@ -95,19 +101,19 @@ class MasterViewController: UITableViewController {
 
     // MARK: - Network
     func loadStories() {
-        let url = NSURL(string: "http://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1.json?api-key=920f538738bd002304a99d6ac5c13f91:9:71241870")
+        let url = NSURL(string: "http://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1.json?offset=\(self.offset)&api-key=920f538738bd002304a99d6ac5c13f91:9:71241870")
         let urlRequest = NSURLRequest(URL: url!)
         let session = NSURLSession.sharedSession()
         session.dataTaskWithRequest(urlRequest, completionHandler: { (rawData: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             if ((error) == nil) {
                 var parseError: NSError?
                 var responseData: NSDictionary = NSJSONSerialization.JSONObjectWithData(rawData, options: NSJSONReadingOptions.MutableContainers, error: &parseError) as NSDictionary
-//                println(responseData)
                 var results: NSArray = responseData["results"] as NSArray
                 for result in results {
                     self.objects.insertObject(result, atIndex: 0)
                 }
                 self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
             } else {
                 println(error)
             }
