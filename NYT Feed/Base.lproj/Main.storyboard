@@ -38,7 +38,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lfr-zN-b1Z">
-                                            <rect key="frame" x="-8" y="-8" width="391" height="216"/>
+                                            <rect key="frame" x="-8" y="0.0" width="391" height="200"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="200" id="tGH-NA-VUQ"/>
+                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIB-TO-3ho">
                                             <rect key="frame" x="8" y="89" width="359" height="76"/>
@@ -50,9 +53,17 @@
                                     <constraints>
                                         <constraint firstItem="Lfr-zN-b1Z" firstAttribute="top" secondItem="d3P-M7-ByW" secondAttribute="topMargin" constant="-16" id="D6B-W7-vGm"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Lfr-zN-b1Z" secondAttribute="bottom" constant="-16" id="IeO-CQ-4d0"/>
+                                        <constraint firstItem="Lfr-zN-b1Z" firstAttribute="top" secondItem="d3P-M7-ByW" secondAttribute="topMargin" constant="-8" id="Jui-Ub-qGY"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Lfr-zN-b1Z" secondAttribute="bottom" constant="-8" id="X9u-Gc-drK"/>
                                         <constraint firstItem="Lfr-zN-b1Z" firstAttribute="leading" secondItem="d3P-M7-ByW" secondAttribute="leadingMargin" constant="-16" id="d0b-NT-9U5"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Lfr-zN-b1Z" secondAttribute="trailing" constant="-16" id="pgg-lh-Cfb"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="D6B-W7-vGm"/>
+                                            <exclude reference="IeO-CQ-4d0"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>

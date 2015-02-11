@@ -113,6 +113,7 @@ class MasterViewController: UITableViewController {
                     self.objects.insertObject(result, atIndex: 0)
                 }
                 self.tableView.reloadData()
+                self.view.setNeedsLayout()
                 self.refreshControl?.endRefreshing()
             } else {
                 println(error)
