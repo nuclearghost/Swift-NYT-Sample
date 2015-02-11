@@ -10,8 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+    @IBOutlet weak var webView: UIWebView!
 
     var detailItem: AnyObject? {
         didSet {
@@ -22,9 +21,11 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail: AnyObject = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
+        if let detail: NSDictionary = self.detailItem as? NSDictionary {
+            if let wv = self.webView {
+                let url = NSURL(string: detail.objectForKey("url") as NSString)
+                let urlRequest = NSURLRequest(URL: url!)
+                wv.loadRequest(urlRequest)
             }
         }
     }

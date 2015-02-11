@@ -44,7 +44,7 @@ class MasterViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let object = objects[indexPath.row] as NSDate
+                let object = objects[indexPath.row] as NSDictionary
             (segue.destinationViewController as DetailViewController).detailItem = object
             }
         }
