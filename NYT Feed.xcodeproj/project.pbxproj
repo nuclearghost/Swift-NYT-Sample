@@ -14,6 +14,7 @@
 		B214729D1A8B368A000E4640 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B214729C1A8B368A000E4640 /* Images.xcassets */; };
 		B21472A01A8B368A000E4640 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B214729E1A8B368A000E4640 /* LaunchScreen.xib */; };
 		B21472AC1A8B368B000E4640 /* NYT_FeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21472AB1A8B368B000E4640 /* NYT_FeedTests.swift */; };
+		B22DB1931A8BE21E0055F79D /* HeadlineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22DB1921A8BE21E0055F79D /* HeadlineTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		B21472A51A8B368B000E4640 /* NYT FeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NYT FeedTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B21472AA1A8B368B000E4640 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B21472AB1A8B368B000E4640 /* NYT_FeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYT_FeedTests.swift; sourceTree = "<group>"; };
+		B22DB1921A8BE21E0055F79D /* HeadlineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlineTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				B21472951A8B368A000E4640 /* MasterViewController.swift */,
 				B21472971A8B368A000E4640 /* DetailViewController.swift */,
 				B21472991A8B368A000E4640 /* Main.storyboard */,
+				B22DB1921A8BE21E0055F79D /* HeadlineTableViewCell.swift */,
 				B214729C1A8B368A000E4640 /* Images.xcassets */,
 				B214729E1A8B368A000E4640 /* LaunchScreen.xib */,
 				B21472911A8B368A000E4640 /* Supporting Files */,
@@ -218,6 +221,7 @@
 				B21472981A8B368A000E4640 /* DetailViewController.swift in Sources */,
 				B21472961A8B368A000E4640 /* MasterViewController.swift in Sources */,
 				B21472941A8B368A000E4640 /* AppDelegate.swift in Sources */,
+				B22DB1931A8BE21E0055F79D /* HeadlineTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +413,7 @@
 				B21472B11A8B368B000E4640 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B21472B21A8B368B000E4640 /* Build configuration list for PBXNativeTarget "NYT FeedTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +422,7 @@
 				B21472B41A8B368B000E4640 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

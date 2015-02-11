@@ -20,7 +20,7 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+//        self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "loadStories")
         self.navigationItem.rightBarButtonItem = addButton
@@ -61,10 +61,21 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as HeadlineTableViewCell
 
         let object = objects[indexPath.row] as NSDictionary
-        cell.textLabel!.text = object["title"] as NSString
+        cell.headlineLabel!.text = object["title"] as NSString
+
+
+        if let media = object["media"] as? NSArray {
+            let image = media[0] as NSDictionary
+            let mediaMetadata = image["media-metadata"] as NSArray
+            let large = mediaMetadata[2] as NSDictionary
+            var url = NSURL(string: large["url"] as NSString)
+            var data = NSData(contentsOfURL : url!)
+            var uimage = UIImage(data : data!)
+            cell.imgView.image = uimage
+        }
         return cell
     }
 
@@ -91,7 +102,7 @@ class MasterViewController: UITableViewController {
             if ((error) == nil) {
                 var parseError: NSError?
                 var responseData: NSDictionary = NSJSONSerialization.JSONObjectWithData(rawData, options: NSJSONReadingOptions.MutableContainers, error: &parseError) as NSDictionary
-                println(responseData)
+//                println(responseData)
                 var results: NSArray = responseData["results"] as NSArray
                 for result in results {
                     self.objects.insertObject(result, atIndex: 0)
