@@ -22,8 +22,10 @@ class MasterViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: "loadStories")
         self.navigationItem.rightBarButtonItem = addButton
+
+        self.loadStories()
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,8 +63,8 @@ class MasterViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
 
-        let object = objects[indexPath.row] as NSDate
-        cell.textLabel!.text = object.description
+        let object = objects[indexPath.row] as NSDictionary
+        cell.textLabel!.text = object["title"] as NSString
         return cell
     }
 
@@ -80,6 +82,25 @@ class MasterViewController: UITableViewController {
         }
     }
 
-
+    // MARK: - Network
+    func loadStories() {
+        let url = NSURL(string: "http://api.nytimes.com/svc/mostpopular/v2/mostviewed/all-sections/1.json?api-key=920f538738bd002304a99d6ac5c13f91:9:71241870")
+        let urlRequest = NSURLRequest(URL: url!)
+        let session = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(urlRequest, completionHandler: { (rawData: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+            if ((error) == nil) {
+                var parseError: NSError?
+                var responseData: NSDictionary = NSJSONSerialization.JSONObjectWithData(rawData, options: NSJSONReadingOptions.MutableContainers, error: &parseError) as NSDictionary
+                println(responseData)
+                var results: NSArray = responseData["results"] as NSArray
+                for result in results {
+                    self.objects.insertObject(result, atIndex: 0)
+                }
+                self.tableView.reloadData()
+            } else {
+                println(error)
+            }
+        }).resume()
+    }
 }
 
